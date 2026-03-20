@@ -22,6 +22,23 @@
   <link rel="stylesheet" href="style-arquitetura.css" />
   <link rel="stylesheet" href="components.css" />
 <style>.reveal{opacity:1!important;transform:none!important;transition:none!important}</style>
+
+<style>
+/* FAQ CSS-only fix */
+.faq-item { cursor:pointer; }
+.faq-item .faq-a { 
+  max-height: 0; 
+  overflow: hidden; 
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1.5rem;
+}
+.faq-item.open .faq-a { 
+  max-height: 600px; 
+  padding: 1rem 1.5rem 1.5rem;
+}
+.faq-item .faq-icon { transition: transform 0.3s ease; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+</style>
 </head>
 <body>
 
@@ -498,7 +515,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="faq-list">
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Quanto custa um projeto de arquitetura para uma moradia?
           <span class="faq-icon">+</span>
         </button>
@@ -508,7 +525,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Quanto tempo demora o processo do projeto até à obra?
           <span class="faq-icon">+</span>
         </button>
@@ -518,7 +535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Posso construir no meu terreno rústico?
           <span class="faq-icon">+</span>
         </button>
@@ -528,7 +545,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           O que é um projeto chave-na-mão?
           <span class="faq-icon">+</span>
         </button>
@@ -538,7 +555,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Trabalham fora de Lisboa?
           <span class="faq-icon">+</span>
         </button>
@@ -548,7 +565,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Posso financiar a construção da moradia?
           <span class="faq-icon">+</span>
         </button>
