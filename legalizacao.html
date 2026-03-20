@@ -40,6 +40,23 @@
   })(window,document,'script','dataLayer','GTM-T99H7W3X');</script>
   <!-- End Google Tag Manager -->
 <style>.reveal{opacity:1!important;transform:none!important;transition:none!important}</style>
+
+<style>
+/* FAQ CSS-only fix */
+.faq-item { cursor:pointer; }
+.faq-item .faq-a { 
+  max-height: 0; 
+  overflow: hidden; 
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1.5rem;
+}
+.faq-item.open .faq-a { 
+  max-height: 600px; 
+  padding: 1rem 1.5rem 1.5rem;
+}
+.faq-item .faq-icon { transition: transform 0.3s ease; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+</style>
 </head>
 <body>
 
@@ -529,7 +546,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="faq-list">
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           O que é exatamente a legalização de um imóvel?
           <span class="faq-icon">+</span>
         </button>
@@ -539,7 +556,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Quanto tempo demora um processo de legalização?
           <span class="faq-icon">+</span>
         </button>
@@ -549,7 +566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Todos os imóveis podem ser legalizados?
           <span class="faq-icon">+</span>
         </button>
@@ -559,7 +576,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Qual é o custo de um processo de legalização?
           <span class="faq-icon">+</span>
         </button>
@@ -569,7 +586,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Posso vender um imóvel que ainda não está legalizado?
           <span class="faq-icon">+</span>
         </button>
@@ -579,7 +596,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item reveal">
-        <button class="faq-q">
+        <button class="faq-q" onclick="var i=this.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')">
           Em que zonas de Portugal atuam?
           <span class="faq-icon">+</span>
         </button>
