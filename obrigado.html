@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Pedido enviado — PO Arquitetos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- GA4 e Google Ads geridos via GTM-T99H7W3X -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #0D0D0D;
+      --blue:   #2B5FAD;
+      --blue-l: #3D74C7;
+      --green:  #40916C;
+      --white:  #FFFFFF;
+      --gray:   #8A8A9A;
+      --ff:     'Montserrat', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--ff);
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(43,95,173,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(43,95,173,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: relative; z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: 1.1rem 0;
+    }
+    .container { width: 92%; max-width: 1140px; margin: 0 auto; }
+    .navbar .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: baseline; gap: .35rem; font-size: 1rem; font-weight: 700; }
+    .nav-logo .po  { color: var(--blue-l); font-weight: 800; }
+    .nav-logo .sub { font-size: .55rem; color: var(--gray); letter-spacing: .14em; font-weight: 500; }
+
+    /* HERO */
+    .hero {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem 0;
+      position: relative; z-index: 1;
+    }
+    .hero-inner {
+      text-align: center;
+      max-width: 560px;
+      padding: 0 1rem;
+    }
+
+    /* Check animado */
+    .check-circle {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: rgba(64,145,108,.15);
+      border: 2px solid rgba(64,145,108,.4);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2rem;
+      animation: popIn .5s cubic-bezier(.175,.885,.32,1.275) both;
+    }
+    .check-circle svg { animation: drawCheck .4s ease .3s both; }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800; letter-spacing: -.025em;
+      margin-bottom: 1rem; line-height: 1.2;
+    }
+    h1 span { color: var(--green); display: block; }
+
+    .sub {
+      font-size: 1rem; font-weight: 300; color: var(--gray);
+      line-height: 1.75; margin-bottom: 2.5rem;
+    }
+
+    /* Cards de próximos passos */
+    .steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,.07);
+      border-radius: 14px; overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .step-card {
+      background: rgba(255,255,255,.04);
+      padding: 1.4rem 1.2rem; text-align: center;
+    }
+    .step-icon { font-size: 1.5rem; margin-bottom: .6rem; }
+    .step-card h3 { font-size: .82rem; font-weight: 700; margin-bottom: .3rem; }
+    .step-card p  { font-size: .72rem; color: var(--gray); font-weight: 300; line-height: 1.5; }
+
+    /* Botões */
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 1.8rem; border-radius: 7px;
+      font-family: var(--ff); font-size: .82rem; font-weight: 700;
+      letter-spacing: .04em; text-transform: uppercase;
+      text-decoration: none; transition: opacity .2s, transform .2s;
+      cursor: pointer;
+    }
+    .btn:hover { opacity: .82; transform: translateY(-1px); }
+    .btn--green { background: var(--green); color: var(--white); }
+    .btn--outline {
+      background: transparent; color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.2);
+    }
+
+    /* Timer de redirect */
+    .redirect-note {
+      margin-top: 2rem;
+      font-size: .72rem; color: rgba(255,255,255,.25); font-weight: 300;
+    }
+    #countdown { color: rgba(255,255,255,.45); font-weight: 600; }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: .72rem; color: var(--gray); font-weight: 300;
+      position: relative; z-index: 1;
+    }
+
+    @media (max-width: 560px) {
+      .steps { grid-template-columns: 1fr; }
+      .btn-group { flex-direction: column; align-items: center; }
+    }
+  </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-T99H7W3X');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T99H7W3X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<nav class="navbar">
+  <div class="container">
+    <div class="nav-logo">
+      <span class="po">PO</span>
+      <span style="color:#fff; font-weight:600;">ARQUITETOS</span>
+      <span class="sub">ARCHITECTURE &amp; DESIGN</span>
+    </div>
+  </div>
+</nav>
+
+<main class="hero">
+  <div class="hero-inner">
+
+    <!-- Check animado -->
+    <div class="check-circle">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+        <polyline points="7,20 15,28 31,10"
+          stroke="#40916C" stroke-width="3.5"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-dasharray="40" stroke-dashoffset="40">
+          <animate attributeName="stroke-dashoffset"
+            from="40" to="0" dur=".45s" begin=".3s" fill="freeze" />
+        </polyline>
+      </svg>
+    </div>
+
+    <h1>
+      Pedido recebido!
+      <span>Entraremos em contacto em breve.</span>
+    </h1>
+
+    <p class="sub">
+      A nossa equipa vai analisar o seu caso e entrará em contacto
+      <strong style="color:#fff;">em até 24 horas úteis</strong> com uma avaliação gratuita.
+    </p>
+
+    <!-- Próximos passos -->
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-icon">📋</div>
+        <h3>Analisamos o seu caso</h3>
+        <p>Verificamos a situação do imóvel e preparamos a avaliação.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">📞</div>
+        <h3>Entramos em contacto</h3>
+        <p>Por telefone ou email nas próximas 24 horas úteis.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">🚀</div>
+        <h3>Plano de ação</h3>
+        <p>Apresentamos o plano e orçamento sem compromisso.</p>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <a href="https://wa.me/351912344767?text=Ol%C3%A1%2C%20enviei%20um%20pedido%20de%20an%C3%A1lise%20e%20gostaria%20de%20falar%20convosco."
+         class="btn btn--green" target="_blank" rel="noopener">
+        💬 Falar no WhatsApp
+      </a>
+      <a href="/" class="btn btn--outline">
+        ← Voltar ao início
+      </a>
+    </div>
+
+    <p class="redirect-note">
+      Redireccionado automaticamente em <span id="countdown">10</span>s
+    </p>
+
+  </div>
+</main>
+
+<footer class="footer">
+  © 2025 PO Arquitetos — Architecture &amp; Design
+</footer>
+
+<script>
+  // Countdown + redirect para a homepage após 10 segundos
+  let secs = 10;
+  const cd = document.getElementById('countdown');
+  const timer = setInterval(() => {
+    secs--;
+    if (cd) cd.textContent = secs;
+    if (secs <= 0) {
+      clearInterval(timer);
+      window.location.href = '/';
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
