@@ -123,7 +123,7 @@ h3 { font-size: 1rem; font-weight: 700; }
 /* Foto de fundo */
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: url('images/render-03.jpg');
+  background-image: url('images/foto-01.jpg');
   background-size: cover;
   background-position: center 30%;
   z-index: 0;
