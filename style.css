@@ -564,6 +564,7 @@ h3 { font-size: 1rem; font-weight: 700; }
   :root { --gap: 3rem; }
   h1 { font-size: 2rem; }
   h2 { font-size: 1.65rem; }
+  .two-col-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
   .hero-trust { gap: 1.5rem; }
   .trust-num { font-size: 1.5rem; }
   .solucao-grid { grid-template-columns: 1fr; }
