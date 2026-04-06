@@ -17,14 +17,7 @@
   );
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-  /* ── FAQ ── */
-  document.querySelectorAll('.faq-item').forEach((item) => {
-    item.querySelector('.faq-q').addEventListener('click', () => {
-      const open = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach((i) => i.classList.remove('open'));
-      if (!open) item.classList.add('open');
-    });
-  });
+  /* ── FAQ — handled via inline onclick in HTML ── */
 
   /* ── SMOOTH SCROLL ── */
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
