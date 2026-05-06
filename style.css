@@ -129,15 +129,22 @@ h3 { font-size: 1rem; font-weight: 700; }
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
 }
 .nav-logo {
-  display: flex; align-items: baseline; gap: .35rem;
-  font-size: 1rem; font-weight: 700; letter-spacing: .08em;
+  display: flex; flex-direction: column; gap: 0;
+  font-size: 1rem; font-weight: 700; letter-spacing: .08em; line-height: 1.1;
 }
+.nav-logo .logo-line1 { display: flex; align-items: baseline; gap: .35rem; }
+.nav-logo .logo-line2 { display: flex; align-items: baseline; gap: .5rem; }
 .nav-logo .po { color: var(--blue-light); font-weight: 800; }
-.nav-logo .arq { color: var(--white); font-weight: 600; }
+.nav-logo .do-o { color: var(--white); font-weight: 800; }
+.nav-logo .arq { color: var(--white); font-weight: 600; border-bottom: 1px solid var(--white); padding-bottom: 1px; }
 .nav-logo .sub {
-  font-size: .55rem; color: var(--gray-text);
+  font-size: .5rem; color: var(--gray-text);
   letter-spacing: .14em; font-weight: 500;
   align-self: center;
+}
+.nav-logo .oa-badge {
+  font-size: .55rem; color: var(--gray-text); font-weight: 500;
+  letter-spacing: .06em; align-self: center; margin-left: .3rem;
 }
 .nav-cta { font-size: .75rem; }
 
@@ -527,8 +534,12 @@ h3 { font-size: 1rem; font-weight: 700; }
 .footer .container {
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
 }
-.footer-logo { display: flex; align-items: baseline; gap: .3rem; font-size: .9rem; font-weight: 700; }
+.footer-logo { display: flex; flex-direction: column; gap: 0; font-size: .9rem; font-weight: 700; line-height: 1.1; }
+.footer-logo .logo-line1 { display: flex; align-items: baseline; gap: .3rem; }
 .footer-logo .po { color: var(--blue-light); font-weight: 800; }
+.footer-logo .do-o { color: var(--white); font-weight: 800; }
+.footer-logo .footer-arq { color: var(--white); font-weight: 600; font-size: .75rem; }
+.footer-oa { font-size: .6rem; color: var(--gray-text); font-weight: 400; margin-top: .2rem; }
 .footer-copy { font-size: .75rem; color: var(--gray-text); font-weight: 300; }
 .footer-links { display: flex; gap: 1.5rem; }
 .footer-links a { font-size: .75rem; color: var(--gray-text); transition: color .2s; }
