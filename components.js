@@ -1,26 +1,22 @@
 /* ============================================================
    PO ARQUITETOS — components.js
-   WhatsApp flutuante · Cookie Banner RGPD · GA4 consent
-   Incluir em AMBAS as LPs antes de </body>
+   WhatsApp flutuante (apenas)
+
+   [Atualizado 9-Jun-2026]
+   O banner de cookies + injeção do GTM/GA4 foi movido para
+   cookie-consent.js (Google Consent Mode v2, opt-in granular
+   com 3 botões Aceitar/Rejeitar/Configurar, CNPD-compliant).
+   Este ficheiro mantém apenas o WhatsApp flutuante.
 ============================================================ */
 (function () {
   'use strict';
 
-  /* ════════════════════════════════════════════
-     ⚠️  CONFIGURAÇÃO — SUBSTITUIR AQUI
-  ════════════════════════════════════════════ */
   const CONFIG = {
-    WA_NUMBER:  '351912344767',           
+    WA_NUMBER:  '351912344767',
     WA_MSG_LEG: 'Olá, pedi uma análise de legalização e gostaria de falar convosco.',
     WA_MSG_MAD: 'Olá, pedi uma análise para projeto de casa de madeira e gostaria de falar convosco.',
-    GA4_ID:     'G-37DZQBVZ5F',     
-    GADS_ID:    'AW-17918640863',     
-    GADS_LABEL: '808ECNuE2e8bEN-Fo-BC', 
-    PRIVACY_URL: '/politica-privacidade.html',
   };
-  /* ════════════════════════════════════════════ */
 
-  // Detectar qual LP está ativa
   const isMadeira = document.title.toLowerCase().includes('madeira');
   const waMsg     = isMadeira ? CONFIG.WA_MSG_MAD : CONFIG.WA_MSG_LEG;
   const waUrl     = `https://wa.me/${CONFIG.WA_NUMBER}?text=${encodeURIComponent(waMsg)}`;
@@ -37,90 +33,8 @@
         </svg>
       </a>
     </div>
-
-    <!-- Cookie Banner RGPD -->
-    <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Política de cookies">
-      <div class="cookie-inner">
-        <p class="cookie-text">
-          <strong>🍪 Utilizamos cookies</strong> para melhorar a sua experiência e medir o desempenho
-          das nossas campanhas (Google Analytics &amp; Google Ads). Ao aceitar, consente o uso de
-          cookies de análise e publicidade.
-          <a href="${CONFIG.PRIVACY_URL}" target="_blank">Política de privacidade</a>
-        </p>
-        <div class="cookie-actions">
-          <button class="cookie-btn cookie-btn--reject" id="cookie-reject">Só essenciais</button>
-          <button class="cookie-btn cookie-btn--accept" id="cookie-accept">Aceitar tudo</button>
-        </div>
-      </div>
-    </div>
   `;
   document.body.insertAdjacentHTML('beforeend', html);
-
-  /* ── COOKIE BANNER LOGIC ── */
-  const banner     = document.getElementById('cookie-banner');
-  const btnAccept  = document.getElementById('cookie-accept');
-  const btnReject  = document.getElementById('cookie-reject');
-  const COOKIE_KEY = 'po_cookie_consent';
-
-  function loadGtag(consent) {
-    // GA4
-    const s1 = document.createElement('script');
-    s1.async = true;
-    s1.src   = `https://www.googletagmanager.com/gtag/js?id=${CONFIG.GA4_ID}`;
-    document.head.appendChild(s1);
-
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function(){ dataLayer.push(arguments); };
-    gtag('js', new Date());
-
-    // Definir consent antes de configurar
-    gtag('consent', 'update', {
-      analytics_storage:     consent ? 'granted' : 'denied',
-      ad_storage:            consent ? 'granted' : 'denied',
-      ad_personalization:    consent ? 'granted' : 'denied',
-      ad_user_data:          consent ? 'granted' : 'denied',
-    });
-
-    gtag('config', CONFIG.GA4_ID, { anonymize_ip: true });
-    if (consent) gtag('config', CONFIG.GADS_ID);
-  }
-
-  function hideBanner() {
-    banner.classList.remove('visible');
-    setTimeout(() => banner.remove(), 400);
-  }
-
-  function setConsent(accepted) {
-    localStorage.setItem(COOKIE_KEY, accepted ? 'granted' : 'denied');
-    loadGtag(accepted);
-    hideBanner();
-  }
-
-  btnAccept.addEventListener('click', () => setConsent(true));
-  btnReject.addEventListener('click', () => setConsent(false));
-
-  // Verificar se já respondeu
-  const saved = localStorage.getItem(COOKIE_KEY);
-  if (saved) {
-    loadGtag(saved === 'granted');
-    // Banner não aparece
-  } else {
-    // Mostrar banner após 1.5s
-    setTimeout(() => {
-      if (banner) banner.classList.add('visible');
-    }, 1500);
-
-    // Consent mode default — bloqueado até resposta
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function(){ dataLayer.push(arguments); };
-    gtag('consent', 'default', {
-      analytics_storage:  'denied',
-      ad_storage:         'denied',
-      ad_personalization: 'denied',
-      ad_user_data:       'denied',
-      wait_for_update:    500,
-    });
-  }
 
   /* ── WA BUBBLE — mostrar após 4s de inatividade ── */
   const waFloat = document.getElementById('wa-float');
@@ -135,7 +49,6 @@
   ['scroll', 'mousemove', 'touchstart'].forEach((ev) =>
     window.addEventListener(ev, resetBubbleTimer, { passive: true, once: true })
   );
-  // Mostrar sempre após 8s mesmo sem interação
   setTimeout(showBubble, 8000);
 
 })();
