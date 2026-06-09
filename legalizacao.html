@@ -32,13 +32,9 @@
   </script>
   <!-- ════════════════════════════════════════ -->
   <link rel="stylesheet" href="components.css" />
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-T99H7W3X');</script>
-  <!-- End Google Tag Manager -->
+  <!-- Cookie Consent + Google Consent Mode v2 -->
+  <link rel="stylesheet" href="cookie-consent.css" />
+  <script src="cookie-consent.js"></script>
 <style>.reveal{opacity:1!important;transform:none!important;transition:none!important}</style>
 
 <style>
@@ -60,10 +56,7 @@
 </head>
 <body>
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T99H7W3X"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+
 
 
 <!-- ══════════════════════
@@ -508,10 +501,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <textarea id="mensagem" name="mensagem" rows="3" placeholder="Descreva brevemente a situação — tipo de irregularidade, o que já tentou fazer, etc."></textarea>
         </div>
 
-        <p class="form-disclaimer">
-          Ao submeter este formulário, autoriza a PO Arquitetos a contactá-lo para os fins indicados.
-          Dados tratados confidencialmente nos termos do RGPD.
-        </p>
+        <div class="form-privacy" style="margin: 1rem 0; padding: .75rem 1rem; background: rgba(0, 102, 204, 0.06); border-left: 3px solid #0066CC; border-radius: 4px; font-size: .82rem; line-height: 1.55; color: var(--gray-text, #555);">
+  <strong>Tratamento de dados pessoais:</strong> ao enviar este pedido, os dados acima são tratados pela <strong>Pedro Miguel Gomes do Ó, Unipessoal, Lda.</strong> (NIF 513 798 935) com a finalidade exclusiva de responder ao seu pedido de orçamento ou consulta, com fundamento em diligências pré-contratuais (art. 6.º, n.º 1, al. b) RGPD). Conservamos os dados por um período máximo de 12 meses se não houver contratação. Pode aceder, retificar ou eliminar os seus dados a qualquer momento por email para <a href="mailto:geral@pedrodooarquitetos.pt" style="color: inherit; text-decoration: underline;">geral@pedrodooarquitetos.pt</a>. Mais informação na nossa <a href="/privacidade" style="color: inherit; text-decoration: underline;"><strong>Política de Privacidade</strong></a>.
+</div>
 
         <button type="submit" class="btn btn--blue btn--full btn--lg">
           Falar Connosco →
@@ -615,18 +607,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- FOOTER -->
+<footer> atual nas 4 LPs)
+     [Atualizado 29-Mai-2026: identificação completa + links legais]
+     ============================================================ -->
+
 <footer class="footer">
   <div class="container">
+
     <div class="footer-logo">
       <div class="logo-line1"><span class="po">PEDRO</span><span class="do-o"> DO Ó</span></div>
       <span class="footer-arq">ARQUITETOS · ARCHITECTURE &amp; DESIGN</span>
-      <span class="footer-oa">OA 19733</span>
+      <span class="footer-oa">Inscrição na Ordem dos Arquitetos: OA 19733</span>
     </div>
-    <span class="footer-copy">© 2026 Pedro do Ó Arquitetos. Todos os direitos reservados.</span>
-    <div class="footer-links">
-      <a href="https://www.pedrodooarquitetos.pt" target="_blank" rel="noopener">Site principal</a>
-      <a href="mailto:geral@pedrodooarquitetos.pt">geral@pedrodooarquitetos.pt</a>
+
+    <div class="footer-id" style="margin-top: 1.25rem; font-size: .85rem; line-height: 1.7; color: var(--gray-text, #999); text-align: center;">
+      <strong>Pedro Miguel Gomes do Ó, Unipessoal, Lda.</strong> · NIF 513&nbsp;798&nbsp;935<br />
+      Av. Q.ta da Atalaia 2A, 2845-546 Amora<br />
+      Tel.: 912 344 767 · Email:
+      <a href="mailto:geral@pedrodooarquitetos.pt" style="color: inherit;">geral@pedrodooarquitetos.pt</a>
     </div>
+
+    <nav class="footer-legal" aria-label="Links legais" style="margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; font-size: .85rem;">
+      <a href="/privacidade">Política de Privacidade</a>
+      <a href="/cookies">Política de Cookies</a>
+      <a href="/termos">Termos de Utilização</a>
+      <a href="#" onclick="if(window.cookieConsent){window.cookieConsent.openPanel();}return false;">Gerir cookies</a>
+    </nav>
+
+    <div class="footer-consumer" style="margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: center; font-size: .82rem;">
+      <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener" title="Livro de Reclamações Eletrónico">
+        <img src="https://www.livroreclamacoes.pt/Assets/Images/livroReclamacoes-pt.png" alt="Livro de Reclamações Eletrónico" style="height: 38px; vertical-align: middle;" />
+      </a>
+      <span style="color: var(--gray-text, #999);">
+        Resolução Alternativa de Litígios:
+        <a href="https://www.cniacc.pt" target="_blank" rel="noopener">CNIACC</a>
+      </span>
+    </div>
+
+    <span class="footer-copy" style="margin-top: 1.25rem; display: block; text-align: center; font-size: .8rem; color: var(--gray-text, #888);">
+      © 2026 Pedro Miguel Gomes do Ó, Unipessoal, Lda. Todos os direitos reservados.
+      <a href="https://www.pedrodooarquitetos.pt" target="_blank" rel="noopener" style="margin-left: .75rem;">Site principal</a>
+    </span>
+
   </div>
 </footer>
 

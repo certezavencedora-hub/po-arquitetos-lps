@@ -1,6 +1,8 @@
 /* ============================================================
    PO ARQUITETOS — Arquitetura Residencial — arquitetura.js
    FormSubmit AJAX · Google Ads via GTM dataLayer
+   [Atualizado 28-Mai-2026: event_callback antes do redirect +
+   log de data.message no catch para diagnóstico futuro]
 ============================================================ */
 (function () {
   'use strict';
@@ -69,6 +71,8 @@
         _origem:     'LP Arquitetura Residencial',
       };
 
+      let serverMsg = '';
+
       try {
         const res  = await fetch(`https://formsubmit.co/ajax/${FORM_EMAIL}`, {
           method:  'POST',
@@ -76,31 +80,43 @@
           body:    JSON.stringify(payload),
         });
         const data = await res.json();
+        serverMsg = data?.message || '';
 
         if (data.success === 'true' || data.success === true) {
 
-          /* 1. Google Ads via gtag direto (se disponível) */
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'conversion', { send_to: GADS_LABEL });
-          }
-
-          /* 2. Google Ads via GTM dataLayer (garante disparo pelo GTM) */
+          /* 1. GTM dataLayer — síncrono, dispara sempre */
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({
-            event:          'form_submit_success',
-            form_id:        'arquitetura',
-            form_name:      'LP Arquitetura Residencial',
+            event:            'form_submit_success',
+            form_id:          'arquitetura',
+            form_name:        'LP Arquitetura Residencial',
             conversion_label: GADS_LABEL,
           });
 
-          /* 3. Redirect para página de obrigado */
-          window.location.href = '/obrigado.html';
+          /* 2. Google Ads — espera envio antes de redirecionar (event_callback) */
+          let redirected = false;
+          const goNext = () => {
+            if (redirected) return;
+            redirected = true;
+            window.location.href = '/obrigado.html';
+          };
+
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+              send_to: GADS_LABEL,
+              event_callback: goNext,
+            });
+            /* Fallback: se o callback não disparar em 1.5s, redireciona na mesma */
+            setTimeout(goNext, 1500);
+          } else {
+            goNext();
+          }
 
         } else {
           throw new Error('FormSubmit failure');
         }
       } catch (err) {
-        console.error('Erro no envio:', err);
+        console.error('Erro no envio:', err, 'Server message:', serverMsg || '(none)');
         submitBtn.textContent = 'Erro — tente novamente';
         submitBtn.style.background = '#c0392b';
         submitBtn.disabled = false;

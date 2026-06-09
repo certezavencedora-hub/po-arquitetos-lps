@@ -1,11 +1,14 @@
 /* ============================================================
    PO ARQUITETOS — Casas de Madeira — script.js
    FormSubmit AJAX — trocar EMAIL pelo email real do Pedro
+   [Atualizado 28-Mai-2026: dataLayer push + event_callback +
+   log de data.message no catch para diagnóstico futuro]
 ============================================================ */
 (function () {
   'use strict';
 
   const FORM_EMAIL = 'geral@pedrodooarquitetos.pt'; // ← alterar se necessário
+  const GADS_LABEL = 'AW-17918640863/808ECNuE2e8bEN-Fo-BC';
 
   /* ── SCROLL REVEAL ── */
   const io = new IntersectionObserver(
@@ -146,6 +149,8 @@
       '11_Origem':         'LP Casas de Madeira',
     };
 
+    let serverMsg = '';
+
     try {
       const res = await fetch(`https://formsubmit.co/ajax/${FORM_EMAIL}`, {
         method:  'POST',
@@ -154,21 +159,43 @@
       });
 
       const data = await res.json();
+      serverMsg = data?.message || '';
 
       if (data.success === 'true' || data.success === true) {
-        // Disparar conversão Google Ads antes de redirecionar
+
+        /* 1. GTM dataLayer — síncrono, dispara sempre */
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event:            'form_submit_success',
+          form_id:          'madeira',
+          form_name:        'LP Casas de Madeira',
+          conversion_label: GADS_LABEL,
+        });
+
+        /* 2. Google Ads — espera envio antes de redirecionar (event_callback) */
+        let redirected = false;
+        const goNext = () => {
+          if (redirected) return;
+          redirected = true;
+          window.location.href = '/obrigado.html';
+        };
+
         if (typeof gtag !== 'undefined') {
           gtag('event', 'conversion', {
-            send_to: 'AW-17918640863/808ECNuE2e8bEN-Fo-BC'
+            send_to: GADS_LABEL,
+            event_callback: goNext,
           });
+          /* Fallback: se o callback não disparar em 1.5s, redireciona na mesma */
+          setTimeout(goNext, 1500);
+        } else {
+          goNext();
         }
-        // Redirecionar para página de obrigado (conversão contada pelo GA4 + Ads)
-        window.location.href = '/obrigado.html';
+
       } else {
         throw new Error('FormSubmit returned failure');
       }
     } catch (err) {
-      console.error('Erro no envio:', err);
+      console.error('Erro no envio:', err, 'Server message:', serverMsg || '(none)');
       btn.textContent = 'Erro — tente novamente';
       btn.style.background = '#c0392b';
       btn.disabled = false;

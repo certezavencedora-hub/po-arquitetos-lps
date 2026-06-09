@@ -143,13 +143,33 @@
       const data = await res.json();
 
       if (data.success === 'true' || data.success === true) {
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'conversion', {
-            send_to: 'AW-17918640863/808ECNuE2e8bEN-Fo-BC'
+
+          /* 1. GTM dataLayer */
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event:            'form_submit_success',
+            form_id:          'passiva',
+            form_name:        'LP Casa Passiva',
+            conversion_label: 'AW-17918640863/808ECNuE2e8bEN-Fo-BC',
           });
-        }
-        window.location.href = '/obrigado.html';
-      } else {
+
+          /* 2. Google Ads conversion com event_callback */
+          let redirected = false;
+          const goNext = () => {
+            if (redirected) return;
+            redirected = true;
+            window.location.href = '/obrigado.html';
+          };
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+              send_to: 'AW-17918640863/808ECNuE2e8bEN-Fo-BC',
+              event_callback: goNext,
+            });
+            setTimeout(goNext, 1500);
+          } else {
+            goNext();
+          }
+        } else {
         throw new Error('FormSubmit returned failure');
       }
     } catch (err) {
