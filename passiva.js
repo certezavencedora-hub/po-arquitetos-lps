@@ -158,7 +158,7 @@
           const goNext = () => {
             if (redirected) return;
             redirected = true;
-            window.location.href = '/obrigado.html';
+            window.location.href = '/obrigado';
           };
           if (typeof gtag !== 'undefined') {
             gtag('event', 'conversion', {
