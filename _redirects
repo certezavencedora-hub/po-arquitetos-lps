@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects
+# Forçar todo o tráfego do domínio default pages.dev para o domínio custom lp.pedrodooarquitetos.pt
+# O "!" força o redirect mesmo quando existe ficheiro estático com o mesmo path no projeto.
+# Razão: a pages.dev tem o GTM antigo a disparar conversões falsas (555/90d vs 376 reais)
+# e nenhum anúncio activo aponta para lá. Adicionado 2026-06-09.
+
+https://po-arquitetos-lps.pages.dev/* https://lp.pedrodooarquitetos.pt/:splat 301!
